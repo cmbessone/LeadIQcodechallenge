@@ -1,42 +1,72 @@
-# 📈 StockTracker
+# 📈 StockTracker - Spring Boot Challenge
 
-Code challenge de seguimiento de acciones utilizando Spring Boot, MySQL y la API de Polygon.io.  
-Arquitectura limpia, con enfoque modular y buenas prácticas.
+![CI](https://github.com/cmbessone/LeadIQcodechallenge/actions/workflows/ci.yml/badge.svg)
 
----
-
-## 🚀 Requisitos
-
-- Java 17+
-- Maven 3.8+
-- Docker (para levantar la base de datos)
-- Cuenta en [Polygon.io](https://polygon.io/) con una API Key válida
+Aplicación RESTful construida con Spring Boot para consultar y persistir precios históricos de acciones usando la API de [Polygon.io](https://polygon.io).
 
 ---
 
-## ⚙️ Configuración del entorno
+## ✅ Objetivo
 
-1. **Clonar el proyecto**
-```bash
-git clone https://github.com/tu-usuario/stocktracker.git
-cd stocktracker
-```
+Desarrollar una API que:
 
-2. **Crear archivo .env en la raíz del proyecto**
-```bash
-touch .env
-```
-3. **Agregar dentro del archivo tu api key**
-```bash
-POLYGON_API_KEY=tu_api_key_de_polygon
-```
-4. **Levantar base de datos MySQL con Docker**
-```bash
-docker run --name mysql-stocktracker -e MYSQL_ROOT_PASSWORD=root \
--e MYSQL_DATABASE=stocktracker -p 3306:3306 -d mysql:8.0
-```
+- 🔍 Consume datos de precios de acciones desde Polygon.io
+- 🗃️ Persiste los datos en una base de datos MySQL
+- 📡 Expone endpoints para consultar y guardar datos
+- 🧪 Contiene tests unitarios e integrales
+- 🔁 Se ejecuta con pipeline CI en GitHub Actions
 
-5. **Ejecutar la aplicacion**
+---
+
+## 🛠️ Stack Tecnológico
+
+- Java 22 + Spring Boot 3.2
+- Maven
+- MySQL (via Docker)
+- JPA + Hibernate
+- JUnit 5 + Mockito + MockMvc
+- GitHub Actions
+
+---
+## Instrucciones
+
+- Crear una cuenta gratuita en polygon.io
+- Obtener tu API key 
+- Crear un archivo .env en la raíz del proyecto con:
+```POLYGON_API_KEY=aca_va_tu_api_key```
+- Levantar la base de datos MySQL con Docker 
+```docker-compose up -d```
+- Ejecutar la aplicación 
+```./mvnw spring-boot:run```
+  - si te da un 401 Unauthorized usar explicitamente el APIKEY
+  
+    - ejemplo: ```POLYGON_API_KEY=aca_va_tu_api_key mvn spring-boot:run```
+- Correr los Tests
+```./mvnw test```
+---
+## 📦 Endpoints
+
+### `POST /stocks/fetch`
+
+Consulta la API externa y guarda los datos en la base local.
+
+**Parámetros (query):**
+- `companySymbol` → e.g. AAPL
+- `fromDate` → e.g. 2023-11-01
+- `toDate` → e.g. 2023-11-10
+
+📌 **Ejemplo:**
+
 ```bash
-./mvnw spring-boot:run
+curl -X POST "http://localhost:8080/stocks/fetch?companySymbol=AAPL&fromDate=2023-11-01&toDate=2023-11-10"
+```
+### `GET /stocks/{symbol}?date=YYYY-MM-DD`
+
+Permite consultar un registro por símbolo y fecha:
+
+
+📌 **Ejemplo:**
+
+```bash
+curl "http://localhost:8080/stocks/AAPL?date=2023-11-06"
 ```
