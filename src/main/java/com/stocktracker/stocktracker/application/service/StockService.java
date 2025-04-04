@@ -69,8 +69,14 @@ public class StockService {
           response.getResults().size(),
           stocks.size());
 
-      stockRepository.saveAll(stocks);
-      logger.info("Saved {} stock records to database for symbol {}", stocks.size(), symbol);
+      if (!stocks.isEmpty()) {
+        stockRepository.saveAll(stocks);
+        logger.info("Saved {} stock records to database for symbol {}", stocks.size(), symbol);
+
+      } else {
+        logger.info("No new stocks to save for symbol {}", symbol);
+      }
+
     } catch (Exception e) {
       logger.error("Error while fetching data from Polygon for symbol {}", symbol, e);
     }
