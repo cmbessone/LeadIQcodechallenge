@@ -5,7 +5,9 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "stocks")
+@Table(
+    name = "stocks",
+    uniqueConstraints = {@UniqueConstraint(columnNames = {"companySymbol", "date"})})
 public class StockEntity {
 
   @Id

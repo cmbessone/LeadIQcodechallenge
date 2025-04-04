@@ -16,7 +16,7 @@ public class PolygonClient {
     this.restTemplate = new RestTemplate();
     Dotenv dotenv = Dotenv.configure().directory(System.getProperty("user.dir")).load();
     this.apiKey = dotenv.get("POLYGON_API_KEY");
-
+    System.out.println("🔐 API KEY from dotenv: " + this.apiKey);
     if (this.apiKey == null || this.apiKey.isEmpty()) {
       throw new IllegalStateException("API key 'POLYGON_API_KEY' not set in .env'");
     }

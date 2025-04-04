@@ -9,4 +9,6 @@ public interface StockRepository {
   void saveAll(List<Stock> stocks);
 
   Optional<Stock> findByCompanySymbolAndDate(String symbol, LocalDate date);
+
+  boolean existsByCompanySymbolAndDate(String companySymbol, LocalDate date);
 }

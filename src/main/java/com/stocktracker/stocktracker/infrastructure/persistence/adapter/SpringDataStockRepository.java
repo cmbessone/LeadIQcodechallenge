@@ -8,4 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface SpringDataStockRepository extends JpaRepository<StockEntity, Integer> {
 
   Optional<StockEntity> findByCompanySymbolAndDate(String companySymbol, LocalDate date);
+
+  boolean existsByCompanySymbolAndDate(String companySymbol, LocalDate date);
 }

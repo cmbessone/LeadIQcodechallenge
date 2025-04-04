@@ -16,16 +16,16 @@ public class StockController {
     this.stockService = stockService;
   }
 
-  // ✅ POST /stocks/fetch
+  // POST /stocks/fetch
   @PostMapping("/fetch")
   public void fetchFromPolygon(
       @RequestParam String companySymbol,
       @RequestParam String fromDate,
       @RequestParam String toDate) {
-    stockService.fetchAndSave(companySymbol, fromDate, toDate);
+    stockService.fetchFromPolygonAndSaveIfNotExists(companySymbol, fromDate, toDate);
   }
 
-  // ✅ GET /stocks/{symbol}?date=YYYY-MM-DD
+  // GET /stocks/{symbol}?date=YYYY-MM-DD
   @GetMapping("/{symbol}")
   public Optional<Stock> getBySymbolAndDate(
       @PathVariable String symbol, @RequestParam("date") LocalDate date) {

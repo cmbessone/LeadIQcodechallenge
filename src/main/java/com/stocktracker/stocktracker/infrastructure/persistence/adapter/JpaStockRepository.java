@@ -30,4 +30,9 @@ public class JpaStockRepository implements StockRepository {
   public Optional<Stock> findByCompanySymbolAndDate(String symbol, LocalDate date) {
     return springDataRepo.findByCompanySymbolAndDate(symbol, date).map(StockMapper::toDomain);
   }
+
+  @Override
+  public boolean existsByCompanySymbolAndDate(String companySymbol, LocalDate date) {
+    return springDataRepo.existsByCompanySymbolAndDate(companySymbol, date);
+  }
 }

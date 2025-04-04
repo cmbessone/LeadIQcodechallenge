@@ -12,6 +12,7 @@ public class StockMapper {
     entity.setCompanySymbol(stock.getCompanySymbol());
     entity.setDate(stock.getDate());
     entity.setOpenPrice(stock.getOpenPrice());
+    entity.setClosePrice(stock.getClosePrice());
     entity.setHighPrice(stock.getHighPrice());
     entity.setLowPrice(stock.getLowPrice());
     entity.setVolume(stock.getVolume());
@@ -26,6 +27,7 @@ public class StockMapper {
     stock.setCompanySymbol(entity.getCompanySymbol());
     stock.setDate(entity.getDate());
     stock.setOpenPrice(entity.getOpenPrice());
+    stock.setClosePrice(entity.getClosePrice());
     stock.setHighPrice(entity.getHighPrice());
     stock.setLowPrice(entity.getLowPrice());
 
