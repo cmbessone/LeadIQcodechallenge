@@ -15,9 +15,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
 public class StockServiceTest {
   @Test
   public void testGetByCompanySymbolAndDateReturnsStock() {
